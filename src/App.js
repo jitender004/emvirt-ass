@@ -1,25 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import { useLoadScript } from "@react-google-maps/api";
+// import { withScriptjs } from "@react-google-maps/api";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Map from "./components/index";
+import "./App.css";
+import Box from "@mui/material/Box";
+export default function App() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyAC_kemZPA3bACKM4NU7NQVvgSGniQUdIQ",
+    libraries: ["drawing"],
+  });
+  if (!isLoaded) return <div>Loading...</div>;
+  return <Map />;
 }
-
-export default App;
